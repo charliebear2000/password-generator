@@ -1,9 +1,21 @@
+var passwordLength;
+var lowercase;
+var uppercase;
+var num1;
+var character;
+
+const lc = ["a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const lower = lc.concat(lc, lc, lc, lc);
+const uc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const upper = uc.concat(uc, uc, uc, uc);
+const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+const numeric = num.concat(num, num, num, num, num, num, num, num, num, num, num, num);
+const char = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+"]
+const symbol = char.concat(char, char, char, char, char, char, char, char, char);
 
 // prompt for length of password between 8 and 128 characters
-
-
 var generatePassword = function() {
-  var passwordLength = window.prompt("Your password needs to be 8 - 128 characters long. How long do you want your password? ");
+  passwordLength = window.prompt("Your password needs to be 8 - 128 characters long. How long do you want your password? ");
   // kick them back to prompt if the answer is not between 8 and 128.
   if (passwordLength < 8 || passwordLength > 128) {
     return generatePassword();
@@ -17,7 +29,7 @@ var generatePassword = function() {
     
   // do you want lowercase letters
   var lowercaseLetters = function() {
-    var lowercase = window.prompt('Do you want to include lowercase letters? Type "YES" or "NO".');
+    lowercase = window.prompt('Do you want to include lowercase letters? Type "YES" or "NO".');
     console.log(lowercase);
     
       // validate prompt
@@ -30,6 +42,7 @@ var generatePassword = function() {
 
       if (lowercase === "yes") {
         window.alert("You DO want to include lowercase letters.");
+        console.log(lowercase);
 
       } else if (lowercase === "no") {
         window.alert("You DO NOT want to include lowercase letters.");
@@ -43,7 +56,7 @@ var generatePassword = function() {
 
   // do you want uppercase letters
   var uppercaseLetters = function() {
-    var uppercase = window.prompt('Do you want to include uppercase letters? Type "YES" or "NO".');
+    uppercase = window.prompt('Do you want to include uppercase letters? Type "YES" or "NO".');
     console.log(uppercase);
     
       // validate prompt
@@ -56,6 +69,7 @@ var generatePassword = function() {
 
       if (uppercase === "yes") {
         window.alert("You DO want to include uppercase letters.");
+        console.log(uppercase);
 
       } else if (uppercase === "no") {
         window.alert("You DO NOT want to include uppercase letters.");
@@ -69,7 +83,7 @@ var generatePassword = function() {
 
   // do you want numbers
   var number = function() {
-    var num1 = window.prompt("Do you want to include numbers? Type YES or NO.");
+    num1 = window.prompt("Do you want to include numbers? Type YES or NO.");
     console.log(num1);
     
       // validate prompt
@@ -82,6 +96,7 @@ var generatePassword = function() {
 
       if (num1 === "yes") {
         window.alert("You DO want to include numbers.");
+        console.log(num1);
 
       } else if (num1 === "no") {
         window.alert("You DO NOT want to include numbers.");
@@ -97,7 +112,7 @@ var generatePassword = function() {
 
   // do you want special characters
   var SpecialCharacters = function() {
-    var character = window.prompt("Do you want to include special characters? Type YES or NO.");
+    character = window.prompt("Do you want to include special characters? Type YES or NO.");
     console.log(character);
     
       // validate prompt
@@ -110,15 +125,20 @@ var generatePassword = function() {
 
       if (character === "yes") {
         window.alert("You DO want to include numbers.");
+        console.log(character);
 
-      } else if (character === "no") {
-        window.alert("You DO NOT want to include numbers.");
-
+      } else if (lowercase === "no" && uppercase === "no" && num1 === "no" && character === "no") {
+        window.alert("You must choose at least one type of character.");
+        lowercaseLetters();
+      
       } else {
         window.alert("You need to provide a valid answer.");
         return SpecialCharacters();
       }
-    }
+  }
+  
+  
+    
   
   // validate prompt
 
