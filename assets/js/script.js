@@ -1,6 +1,7 @@
 
 // prompt for length of password between 8 and 128 characters
 
+
 var generatePassword = function() {
   var passwordLength = window.prompt("Your password needs to be 8 - 128 characters long. How long do you want your password? ");
   // kick them back to prompt if the answer is not between 8 and 128.
@@ -143,5 +144,5 @@ var generatePassword = function() {
 
 
 /* RUN GAME */
-generatePassword();
+//generatePassword();
 
