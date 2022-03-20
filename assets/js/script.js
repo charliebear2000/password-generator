@@ -5,7 +5,7 @@ var num1;
 var character;
 var random;
 
-
+// what if someone picks 128 of one type of character? so I concatenated enough of each type to cover that possibility.
 var lc = ["a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var lower = lc.concat(lc, lc, lc, lc);
 var uc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -18,8 +18,12 @@ var password = [];
 
 // prompt for length of password between 8 and 128 characters
 var generatePassword = function() {
+  
+  // resets password to an empty array for subsequent attempts
+  password = [];
+  
   passwordLength = window.prompt("Your password needs to be 8 - 128 characters long. How long do you want your password? ");
-  // kick them back to prompt if the answer is not between 8 and 128.
+  // kicks them back to prompt if the answer is not between 8 and 128.
   if (passwordLength < 8 || passwordLength > 128) {
     return generatePassword();
 
@@ -30,7 +34,7 @@ var generatePassword = function() {
   }
 }
     
-  // do you want lowercase letters
+  // do you want lowercase letters?
   var lowercaseLetters = function() {
     lowercase = window.prompt('Do you want to include lowercase letters? Type "YES" or "NO".');
     console.log(lowercase);
@@ -57,7 +61,7 @@ var generatePassword = function() {
       uppercaseLetters();
     }
 
-  // do you want uppercase letters
+  // do you want uppercase letters?
   var uppercaseLetters = function() {
     uppercase = window.prompt('Do you want to include uppercase letters? Type "YES" or "NO".');
     console.log(uppercase);
@@ -84,7 +88,7 @@ var generatePassword = function() {
       number();
     }
 
-  // do you want numbers
+  // do you want numbers?
   var number = function() {
     num1 = window.prompt("Do you want to include numbers? Type YES or NO.");
     console.log(num1);
@@ -111,9 +115,9 @@ var generatePassword = function() {
       SpecialCharacters();
     }
   
-  // validate prompt
+  
 
-  // do you want special characters
+  // do you want special characters?
   var SpecialCharacters = function() {
     character = window.prompt("Do you want to include special characters? Type YES or NO.");
     console.log(character);
@@ -130,6 +134,7 @@ var generatePassword = function() {
         window.alert("You DO want to include numbers.");
         console.log(character);
 
+      // sends them back to first character question if answered no to all character types  
       } else if (character === "no") {
         if (lowercase === "no" && uppercase === "no" && num1 === "no" && character === "no") {
           window.alert("You must choose at least one type of character.");
@@ -146,6 +151,7 @@ var generatePassword = function() {
         passwordText();
       }
   
+      // collect all the arrays that were yes answers and add them to a single array
       var passwordText = function() {
         if (lowercase === "yes") {
           password = password.concat(lower);
@@ -169,6 +175,7 @@ var generatePassword = function() {
           random();
       }  
         
+      // randomize the elements in the array
       function random() {
         for (let i = password.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * i);
@@ -176,10 +183,14 @@ var generatePassword = function() {
           password[i] = password[j];
           password[j] = k;}
       
+          // join the elements of the array with no spaces or commas
           password = password.join("");
           console.log(password);
         
+          // pull out the number of characters that was specified in first prompt
           password = password.slice(0, passwordLength);
+
+          // display the password on the screen
           var passwordText = document.querySelector("#password");
           passwordText.value = password;
     }  
