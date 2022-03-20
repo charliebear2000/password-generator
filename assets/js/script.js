@@ -3,15 +3,18 @@ var lowercase;
 var uppercase;
 var num1;
 var character;
+var random;
 
-const lc = ["a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const lower = lc.concat(lc, lc, lc, lc);
-const uc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const upper = uc.concat(uc, uc, uc, uc);
-const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-const numeric = num.concat(num, num, num, num, num, num, num, num, num, num, num, num);
-const char = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+"]
-const symbol = char.concat(char, char, char, char, char, char, char, char, char);
+
+var lc = ["a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var lower = lc.concat(lc, lc, lc, lc);
+var uc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var upper = uc.concat(uc, uc, uc, uc);
+var num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+var numeric = num.concat(num, num, num, num, num, num, num, num, num, num, num, num);
+var char = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "_", "+"]
+var symbol = char.concat(char, char, char, char, char, char, char, char, char);
+var password = [];
 
 // prompt for length of password between 8 and 128 characters
 var generatePassword = function() {
@@ -127,42 +130,58 @@ var generatePassword = function() {
         window.alert("You DO want to include numbers.");
         console.log(character);
 
-      } else if (lowercase === "no" && uppercase === "no" && num1 === "no" && character === "no") {
-        window.alert("You must choose at least one type of character.");
-        lowercaseLetters();
+      } else if (character === "no") {
+        if (lowercase === "no" && uppercase === "no" && num1 === "no" && character === "no") {
+          window.alert("You must choose at least one type of character.");
+          lowercaseLetters();
+
+        } else {
+        window.alert("You DO NOT want to include numbers.");
       
-      } else {
+        } 
+      }else {
         window.alert("You need to provide a valid answer.");
         return SpecialCharacters();
+        }
+        passwordText();
       }
-  }
   
-  
+      var passwordText = function() {
+        if (lowercase === "yes") {
+          password = password.concat(lower);
+          console.log(password);
+        }
+
+        if (uppercase === "yes") {
+          password = password.concat(upper);
+          console.log(password);
+        } 
+
+        if (num1 === "yes") {
+          password = password.concat(numeric);
+          console.log(password);
+        }
+
+        if (character === "yes") {
+          password = password.concat(symbol);
+          console.log(password);
+        }
+          random();
+      }  
+        
+      function random() {
+        for (let i = password.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * i);
+          let k = password[i];
+          password[i] = password[j];
+          password[j] = k;}
+      
+          password = password.join("");
+          console.log(password);
+        
+          password = password.slice(0, passwordLength);
+          var passwordText = document.querySelector("#password");
+          passwordText.value = password;
+    }  
     
   
-  // validate prompt
-
-// generate password
-
-// display password
-
-
-// Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-//function writePassword() {
-  //var password = generatePassword();
-  //var passwordText = document.querySelector("#password");
-
-  //passwordText.value = password;
-
-//}
-
-// Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword);
-
-
-/* RUN GAME */
-//generatePassword();
-
