@@ -12,7 +12,7 @@ I was provided with the starter code for a webpage that will generate a password
 * The password will then be displayed either in an alert or written to the page.
 
 ### Screenshot
-![Password Generator](https://github.com/charliebear2000/password-generator/blob/main/website-screenshot.png?raw=true)
+![Password Generator](https://github.com/charliebear2000/password-generator/blob/main/website-screenshot.PNG?raw=true)
 
 #### URL
 https://charliebear2000.github.io/password-generator/
